@@ -1,0 +1,31 @@
+class Solution:
+    def findPreSuc(self, root, key):
+        # code here
+        predecessor = self.findPredecessor(root, key)
+        successor = self.findSuccessor(root, key)
+        return predecessor, successor
+
+    def findPredecessor(self, root, key):
+        predecessor = None
+        curr = root
+
+        while curr:
+            if curr.data < key:
+                predecessor = curr
+                curr = curr.right
+            else:
+                curr = curr.left
+
+        return predecessor
+
+    def findSuccessor(self, root, key):
+        successor = None
+        curr = root
+
+        while curr:
+            if curr.data > key:  # it may be successor
+                successor = curr
+                curr = curr.left
+            else:
+                curr = curr.right
+        return successor
